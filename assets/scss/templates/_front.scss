@@ -1,0 +1,16 @@
+.front-hero {
+  @include breakpoint(small) {
+    background:url('../images/background.jpg') bottom center;
+    background-size:cover;
+    background-position:bottom;
+    padding:rem-calc(65%) 0;
+    height:auto;
+    position:relative;
+  }
+
+  @include breakpoint(medium) {
+    background:url('../images/background.jpg') bottom center;
+    background-size:cover;
+    background-position:center;
+  }
+}
