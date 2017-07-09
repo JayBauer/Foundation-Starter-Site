@@ -61,7 +61,7 @@ Running this command will build and minify the theme's assets and place a `.zip`
  * `assets/scss/global/*.scss`: Global settings
  * `assets/scss/components/*.scss`: Buttons etc.
  * `assets/scss/modules/*.scss`: Topbar, footer etc.
- * `assets/scss/templates/*.scss`: Page template spesific styling
+ * `assets/scss/templates/*.scss`: Page template specific styling
 
 Please note that you **must** run `npm run build` or `npm run watch` in your terminal for the styles to be copied and concatenated. See the gulpfile.js for details.
 
