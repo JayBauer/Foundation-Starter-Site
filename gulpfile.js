@@ -11,6 +11,10 @@ var colors      = require('colors');
 var dateFormat  = require('dateformat');
 var del         = require('del');
 var cleanCSS    = require('gulp-clean-css');
+var imagemin    = require('gulp-imagemin');
+var pngquant    = require('gulp-pngquant');
+var webpack2    = require('webpack');
+var webpack     = require('webpack-stream');
 
 // Enter URL of your local server here
 // Example: 'http://localwebsite.dev'
@@ -42,27 +46,30 @@ var PATHS = {
     'assets/components/foundation-sites/js/foundation.abide.js',
     'assets/components/foundation-sites/js/foundation.accordion.js',
     'assets/components/foundation-sites/js/foundation.accordionMenu.js',
-    //'assets/components/foundation-sites/js/foundation.drilldown.js',
+    'assets/components/foundation-sites/js/foundation.drilldown.js',
     'assets/components/foundation-sites/js/foundation.dropdown.js',
     'assets/components/foundation-sites/js/foundation.dropdownMenu.js',
     'assets/components/foundation-sites/js/foundation.equalizer.js',
-    //'assets/components/foundation-sites/js/foundation.interchange.js',
+    'assets/components/foundation-sites/js/foundation.interchange.js',
     //'assets/components/foundation-sites/js/foundation.magellan.js',
     //'assets/components/foundation-sites/js/foundation.offcanvas.js',
     'assets/components/foundation-sites/js/foundation.orbit.js',
     'assets/components/foundation-sites/js/foundation.responsiveMenu.js',
     'assets/components/foundation-sites/js/foundation.responsiveToggle.js',
-    //'assets/components/foundation-sites/js/foundation.reveal.js',
+    'assets/components/foundation-sites/js/foundation.reveal.js',
     'assets/components/foundation-sites/js/foundation.slider.js',
+    'assets/components/foundation-sites/js/foundation.smoothScroll.js',
     'assets/components/foundation-sites/js/foundation.sticky.js',
     'assets/components/foundation-sites/js/foundation.tabs.js',
     'assets/components/foundation-sites/js/foundation.toggler.js',
     //'assets/components/foundation-sites/js/foundation.tooltip.js',
     'assets/components/foundation-sites/js/foundation.zf.responsiveAccordionTabs.js',
 
-
     // Motion UI
     'assets/components/motion-ui/motion-ui.js',
+
+    // Masonry
+    //'node_modules/masonry-layout/*.js',
 
     // Include your own custom scripts (located in the custom folder)
     'assets/javascript/custom/*.js',
@@ -155,6 +162,7 @@ gulp.task('javascript', function() {
 
   return gulp.src(PATHS.javascript)
     .pipe($.sourcemaps.init())
+    .pipe(webpack())
     .pipe($.babel())
     .pipe($.concat('foundation.js', {
       newLine:'\n;'
@@ -163,6 +171,22 @@ gulp.task('javascript', function() {
     .pipe($.if(!isProduction, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/javascript'))
     .pipe(browserSync.stream());
+});
+
+gulp.task('images', function() {
+  return gulp.src('assets/images/**/*')
+    .pipe($.if(isProduction, $.imagemin({
+      progressive: true
+    })))
+    .pipe(gulp.dest('assets/images'));
+});
+
+gulp.task('pngopt', function() {
+  return gulp.src('assets/images/**/*.png')
+    .pipe($.if(isProduction, pngquant({
+      quality:'60-80'
+    })))
+    .pipe(gulp.dest('assets/images/'));
 });
 
 // Copy task
@@ -190,7 +214,7 @@ gulp.task('package', ['build'], function() {
 // Runs copy then runs sass & javascript in parallel
 gulp.task('build', ['clean'], function(done) {
   sequence('copy',
-          ['sass', 'javascript', 'lint'],
+          ['sass', 'javascript', 'lint', 'images', 'pngopt'],
           done);
 });
 

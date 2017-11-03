@@ -1,8 +1,8 @@
 {
-  "name": "jaybauerstarter",
-  "title": "jaybauerstarter",
+  "name": "elitedigitalbase",
+  "title": "EliteDigitalBase",
   "version": "1.0.0",
-  "description": "Base theme for Jay Bauer's websites, based on FoundationPress by Ole Fredrik.",
+  "description": "Base theme for Elite Digital websites, based on FoundationPress by Ole Fredrik.",
   "keywords": [
     "Elite Digital",
     "Elite Digital Base",
@@ -15,31 +15,32 @@
     "customizable",
     "responsive"
   ],
-  "homepage": "http://foundationpress.olefredrik.com/",
-  "bugs": "https://github.com/olefredrik/FoundationPress/issues",
+  "homepage": "http://elitedigitalagency.com",
   "license": "MIT",
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/olefredrik/FoundationPress.git"
+    "url": "https://eliteemail.codebasehq.com/"
   },
   "devDependencies": {
     "autoprefixer": "^6.1.0",
-    "babel-core": "^6.5.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
     "babel-plugin-transform-es2015-block-scoped-functions": "^6.3.13",
-    "babel-plugin-transform-es2015-block-scoping": "^6.4.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.26.0",
     "babel-plugin-transform-es2015-classes": "^6.3.15",
     "babel-plugin-transform-es2015-destructuring": "^6.3.15",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.3.13",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-es2015-parameters": "^6.3.26",
     "babel-plugin-transform-es2015-shorthand-properties": "^6.5.0",
     "babel-plugin-transform-es2015-spread": "^6.4.0",
     "babel-plugin-transform-es2015-template-literals": "^6.3.13",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.5.0",
-    "babel-register": "^6.5.2",
+    "babel-register": "^6.26.0",
     "bower": "^1.8.0",
-    "browser-sync": "^2.10.0",
+    "browser-sync": "^2.18.13",
     "colors": "^1.1.2",
     "dateformat": "^1.0.12",
     "del": "^2.2.0",
@@ -50,14 +51,17 @@
     "gulp-concat": "^2.6.0",
     "gulp-flatten": "^0.2.0",
     "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^3.3.0",
     "gulp-jshint": "^2.0.0",
     "gulp-load-plugins": "^1.1.0",
     "gulp-notify": "^2.2.0",
     "gulp-phpcbf": "latest",
     "gulp-phpcs": "^1.0.0",
     "gulp-plumber": "^1.0.1",
+    "gulp-pngquant": "^1.0.11",
     "gulp-sass": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-tinypng": "^1.0.2",
     "gulp-uglify": "^1.5.1",
     "gulp-uncss": "^1.0.4",
     "gulp-util": "^3.0.7",
@@ -66,6 +70,8 @@
     "merge-stream": "^1.0.0",
     "motion-ui": "^1.1.0",
     "run-sequence": "^1.1.5",
+    "webpack": "^3.5.5",
+    "webpack-stream": "^4.0.0",
     "yargs": "^3.31.0"
   },
   "scripts": {
@@ -76,5 +82,8 @@
     "postinstall": "bower install && gulp build",
     "production": "gulp --production",
     "watch": "gulp"
+  },
+  "dependencies": {
+    "masonry-layout": "^4.2.0"
   }
 }
